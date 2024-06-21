@@ -13,52 +13,45 @@
     <meta name="twitter:title" content="CUÁNTAS HORAS LE FALTAN AL PIEDRA PARA ESTAR DE VACACIONES?">
     <meta name="twitter:description" content="Descubre cuántas horas faltan para que el Piedra esté de vacaciones.">
     <meta name="twitter:image" content="https://cuantosdiasllevaelpiedradevacaciones.github.io/cuantosdiasllevaelpiedradevacaciones/image.png">
-
+    <link rel="icon" href="path_to_your_favicon/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="path_to_your_favicon/favicon.ico" type="image/x-icon">
     <style>
         @keyframes hue-rotate {
             from { filter: hue-rotate(0deg); }
             to { filter: hue-rotate(360deg); }
         }
-
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
-
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-
         @keyframes slide {
             0% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0); }
         }
-
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
         @keyframes fall {
             from { top: -10%; opacity: 1; }
             to { top: 110%; opacity: 0; }
         }
-
         @keyframes rise {
             from { bottom: -10%; opacity: 1; }
             to { bottom: 110%; opacity: 0; }
         }
-
         @keyframes bubble {
             0% { transform: scale(0); opacity: 0; }
             50% { transform: scale(1.5); opacity: 1; }
             100% { transform: scale(1); opacity: 0; }
         }
-
         body {
             display: flex;
             justify-content: center;
@@ -73,7 +66,6 @@
             overflow: hidden;
             position: relative;
         }
-
         .content {
             text-align: center;
             padding: 20px;
@@ -82,36 +74,29 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             transition: transform 0.5s, filter 0.5s;
         }
-
         h1 {
             font-size: 3em;
             margin: 0 0 20px;
             animation: pulse 2s infinite;
         }
-
         p {
             font-size: 2em;
             margin: 10px 0;
         }
-
         .emoji, .star, .rocket {
             position: absolute;
             font-size: 2em;
             animation: blur-in 1s forwards;
         }
-
         .falling {
             animation: fall 5s linear infinite;
         }
-
         .rising {
             animation: rise 5s linear infinite;
         }
-
         .bubbling {
             animation: bubble 4s ease-in-out infinite;
         }
-
         .color1 { background: linear-gradient(45deg, #ffcccc, #660000); }
         .color2 { background: linear-gradient(45deg, #ccffcc, #006600); }
         .color3 { background: linear-gradient(45deg, #ccccff, #000066); }
@@ -120,7 +105,6 @@
         .color6 { background: linear-gradient(45deg, #ffffcc, #666600); }
         .color7 { background: linear-gradient(45deg, #ffcc99, #993300); }
         .color8 { background: linear-gradient(45deg, #99ccff, #003399); }
-
         .transform1 { transform: rotate(0deg); }
         .transform2 { transform: rotate(15deg); }
         .transform3 { transform: rotate(-15deg); }
@@ -129,7 +113,6 @@
         .transform6 { transform: translateX(30px); }
         .transform7 { transform: translateY(30px); }
         .transform8 { transform: rotate(25deg); }
-
         .content1 { filter: contrast(200%); }
         .content2 { filter: sepia(80%); }
         .content3 { filter: invert(80%); }
@@ -137,17 +120,10 @@
         .content5 { filter: saturate(250%); }
         .content6 { filter: hue-rotate(120deg); }
         .content7 { filter: grayscale(80%); }
-
         .animation1 { animation: pulse 1s infinite; }
         .animation2 { animation: spin 5s infinite; }
         .animation3 { animation: slide 3s infinite; }
         .animation4 { animation: hue-rotate 10s infinite; }
-
-        .whatsapp-share-button {
-            display: inline-block;
-            margin-top: 20px;
-        }
-
         .whatsapp-share-button img {
             width: 40px;
             height: 40px;
@@ -165,6 +141,8 @@
     </div>
     <script>
         const vacationStartTime = new Date("2024-06-28T13:00:00Z"); // Fecha y hora de inicio de las vacaciones en UTC (equivalente a las 15:00 en Barcelona)
+        console.log("Vacation Start Time: ", vacationStartTime.toString());
+
         const emojis = [
             '😜', '😂', '😎', '🤩', '🥳', '😁', '😲', '😱', '🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🦁', '🐯',
             '😆', '😅', '🤣', '😋', '😊', '😇', '😈', '👹', '👺', '💀', '👻', '👽', '🤖', '💩', '😺', '😸', '😹', '😻',
@@ -193,7 +171,7 @@
 
         async function fetchBackgroundImage() {
             try {
-                const response = await fetch(`https://api.unsplash.com/photos/random?query=beach,pool&client_id=0Ze6F_dyColY_l8NsMydsuwPaf8wsNgjRoJ3axx7Mm5U`);
+                const response = await fetch(`https://api.unsplash.com/photos/random?query=beach,pool&client_id=Ze6F_dyColY_l8NsMydsuwPaf8wsNgjRoJ3axx7Mm5U`);
                 if (!response.ok) {
                     throw new Error('API limit reached or other error');
                 }
@@ -213,14 +191,17 @@
 
         function calculateTime() {
             const now = new Date();
+            console.log("Current Time: ", now.toISOString());
             const timeCountElem = document.getElementById("timeCount");
             const mainTextElem = document.getElementById("mainText");
 
             if (now < vacationStartTime) {
                 const diffTime = vacationStartTime - now;
-                const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const hours = Math.floor(diffTime / (1000 * 60 * 60));
                 const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+                console.log(`Time Remaining: ${hours} hours, ${minutes} minutes, ${seconds} seconds`);
 
                 timeCountElem.textContent = `${hours} HORAS ${minutes} MINUTOS ${seconds} SEGUNDOS`;
                 document.title = "CUÁNTAS HORAS LE FALTAN AL PIEDRA PARA ESTAR DE VACACIONES?";
