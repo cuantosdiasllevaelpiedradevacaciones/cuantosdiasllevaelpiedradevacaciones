@@ -173,7 +173,7 @@
         const elements = ['emoji', 'star', 'rocket'];
 
         async function fetchBackgroundImage() {
-            const response = await fetch(`https://api.unsplash.com/photos/random?query=beach,pool&client_id=YOUR_ACCESS_KEY`);
+            const response = await fetch(`https://api.unsplash.com/photos/random?query=beach,pool&client_id=Ze6F_dyColY_l8NsMydsuwPaf8wsNgjRoJ3axx7Mm5U`);
             const data = await response.json();
             document.body.style.backgroundImage = `url(${data.urls.full})`;
         }
