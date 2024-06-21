@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Días de Vacaciones</title>
     <style>
+        @keyframes hue-rotate {
+            from {
+                filter: hue-rotate(0deg);
+            }
+            to {
+                filter: hue-rotate(360deg);
+            }
+        }
+        
         body {
             display: flex;
             justify-content: center;
@@ -14,30 +23,51 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             transition: background-color 0.5s, color 0.5s;
+            animation: hue-rotate 10s infinite;
         }
+
         .content {
             text-align: center;
             transition: transform 0.5s;
         }
+
         h1 {
             font-size: 2em;
+            animation: pulse 1s infinite;
         }
+
         p {
             font-size: 1.5em;
         }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
         .color1 { background-color: #ffcccc; color: #660000; }
         .color2 { background-color: #ccffcc; color: #006600; }
         .color3 { background-color: #ccccff; color: #000066; }
         .transform1 { transform: rotate(0deg); }
         .transform2 { transform: rotate(3deg); }
         .transform3 { transform: rotate(-3deg); }
+        .content1 { filter: blur(2px); }
+        .content2 { filter: contrast(150%); }
+        .content3 { filter: sepia(50%); }
     </style>
 </head>
 <body>
     <div class="content">
         <h1>CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES?</h1>
         <p id="daysCount">X DÍAS</p>
-        <p id="visitCount">Visitas: 0</p>
+        <p id="visitCount">Visitas: <img src="https://visitor-badge.laobi.icu/badge?page_id=mi_usuario.mi_repositorio" alt="Visitas"></p>
     </div>
     <script>
         function calculateDays() {
@@ -49,28 +79,19 @@
             document.getElementById("daysCount").textContent = `${diffDays} ${dayText}`;
         }
 
-        function updateVisitCount() {
-            let visits = localStorage.getItem('visitCount');
-            if (!visits) {
-                visits = 0;
-            }
-            visits++;
-            localStorage.setItem('visitCount', visits);
-            document.getElementById("visitCount").textContent = `Visitas: ${visits}`;
-        }
-
         function applyRandomStyle() {
             const body = document.body;
             const content = document.querySelector('.content');
             const colorClass = `color${Math.floor(Math.random() * 3) + 1}`;
             const transformClass = `transform${Math.floor(Math.random() * 3) + 1}`;
+            const contentClass = `content${Math.floor(Math.random() * 3) + 1}`;
             body.classList.add(colorClass);
             content.classList.add(transformClass);
+            content.classList.add(contentClass);
         }
 
         window.onload = () => {
             calculateDays();
-            updateVisitCount();
             applyRandomStyle();
         };
     </script>
