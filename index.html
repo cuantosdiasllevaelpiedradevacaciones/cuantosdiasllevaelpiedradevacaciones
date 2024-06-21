@@ -13,9 +13,11 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
+            transition: background-color 0.5s, color 0.5s;
         }
         .content {
             text-align: center;
+            transition: transform 0.5s;
         }
         h1 {
             font-size: 2em;
@@ -23,22 +25,54 @@
         p {
             font-size: 1.5em;
         }
+        .color1 { background-color: #ffcccc; color: #660000; }
+        .color2 { background-color: #ccffcc; color: #006600; }
+        .color3 { background-color: #ccccff; color: #000066; }
+        .transform1 { transform: rotate(0deg); }
+        .transform2 { transform: rotate(3deg); }
+        .transform3 { transform: rotate(-3deg); }
     </style>
 </head>
 <body>
     <div class="content">
         <h1>CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES?</h1>
         <p id="daysCount">X DÍAS</p>
+        <p id="visitCount">Visitas: 0</p>
     </div>
     <script>
         function calculateDays() {
-            const startDate = new Date("2024-06-21"); // La fecha de hoy como punto de partida
+            const startDate = new Date("2024-06-21");
             const today = new Date();
             const diffTime = Math.abs(today - startDate);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            document.getElementById("daysCount").textContent = `${diffDays} DÍAS`;
+            const dayText = diffDays === 1 ? "DÍA" : "DÍAS";
+            document.getElementById("daysCount").textContent = `${diffDays} ${dayText}`;
         }
-        window.onload = calculateDays;
+
+        function updateVisitCount() {
+            let visits = localStorage.getItem('visitCount');
+            if (!visits) {
+                visits = 0;
+            }
+            visits++;
+            localStorage.setItem('visitCount', visits);
+            document.getElementById("visitCount").textContent = `Visitas: ${visits}`;
+        }
+
+        function applyRandomStyle() {
+            const body = document.body;
+            const content = document.querySelector('.content');
+            const colorClass = `color${Math.floor(Math.random() * 3) + 1}`;
+            const transformClass = `transform${Math.floor(Math.random() * 3) + 1}`;
+            body.classList.add(colorClass);
+            content.classList.add(transformClass);
+        }
+
+        window.onload = () => {
+            calculateDays();
+            updateVisitCount();
+            applyRandomStyle();
+        };
     </script>
 </body>
 </html>
