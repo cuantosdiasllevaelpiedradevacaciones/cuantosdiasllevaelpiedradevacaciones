@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES</title>
-    <meta property="og:title" content="CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES">
-    <meta property="og:description" content="Descubre cuántos días lleva el Piedra de vacaciones.">
+    <title>CUÁNTAS HORAS LE FALTAN AL PIEDRA PARA ESTAR DE VACACIONES?</title>
+    <meta property="og:title" content="CUÁNTAS HORAS LE FALTAN AL PIEDRA PARA ESTAR DE VACACIONES?">
+    <meta property="og:description" content="Descubre cuántas horas faltan para que el Piedra esté de vacaciones.">
     <meta property="og:image" content="https://cuantosdiasllevaelpiedradevacaciones.github.io/cuantosdiasllevaelpiedradevacaciones/image.png">
     <meta property="og:url" content="https://cuantosdiasllevaelpiedradevacaciones.github.io/cuantosdiasllevaelpiedradevacaciones/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES">
-    <meta name="twitter:description" content="Descubre cuántos días lleva el Piedra de vacaciones.">
+    <meta name="twitter:title" content="CUÁNTAS HORAS LE FALTAN AL PIEDRA PARA ESTAR DE VACACIONES?">
+    <meta name="twitter:description" content="Descubre cuántas horas faltan para que el Piedra esté de vacaciones.">
     <meta name="twitter:image" content="https://cuantosdiasllevaelpiedradevacaciones.github.io/cuantosdiasllevaelpiedradevacaciones/image.png">
 
     <style>
@@ -151,18 +151,20 @@
         .whatsapp-share-button img {
             width: 40px;
             height: 40px;
+            filter: none !important;
         }
     </style>
 </head>
 <body>
     <div class="content">
-        <h1>CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES?</h1>
-        <p id="daysCount">X DÍAS</p>
-        <a class="whatsapp-share-button" href="https://api.whatsapp.com/send?text=CUÁNTOS%20DÍAS%20LLEVA%20EL%20PIEDRA%20DE%20VACACIONES%3F%20https%3A%2F%2Fcuantosdiasllevaelpiedradevacaciones.github.io%2Fcuantosdiasllevaelpiedradevacaciones%2F" target="_blank">
+        <h1 id="mainText">CUÁNTAS HORAS LE FALTAN AL PIEDRA PARA ESTAR DE VACACIONES?</h1>
+        <p id="timeCount">Cargando...</p>
+        <a class="whatsapp-share-button" href="https://api.whatsapp.com/send?text=CUÁNTAS%20HORAS%20LE%20FALTAN%20AL%20PIEDRA%20PARA%20ESTAR%20DE%20VACACIONES%3F%20https%3A%2F%2Fcuantosdiasllevaelpiedradevacaciones.github.io%2Fcuantosdiasllevaelpiedradevacaciones%2F" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Compartir en WhatsApp">
         </a>
     </div>
     <script>
+        const vacationStartTime = new Date("2024-06-28T13:00:00Z"); // Fecha y hora de inicio de las vacaciones en UTC (equivalente a las 15:00 en Barcelona)
         const emojis = [
             '😜', '😂', '😎', '🤩', '🥳', '😁', '😲', '😱', '🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🦁', '🐯',
             '😆', '😅', '🤣', '😋', '😊', '😇', '😈', '👹', '👺', '💀', '👻', '👽', '🤖', '💩', '😺', '😸', '😹', '😻',
@@ -209,13 +211,35 @@
             document.body.style.background = `linear-gradient(45deg, ${randomColor1}, ${randomColor2})`;
         }
 
-        function calculateDays() {
-            const startDate = new Date("2024-06-21");
-            const today = new Date();
-            const diffTime = Math.abs(today - startDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            const dayText = diffDays === 1 ? "DÍA" : "DÍAS";
-            document.getElementById("daysCount").textContent = `${diffDays} ${dayText}`;
+        function calculateTime() {
+            const now = new Date();
+            const timeCountElem = document.getElementById("timeCount");
+            const mainTextElem = document.getElementById("mainText");
+
+            if (now < vacationStartTime) {
+                const diffTime = vacationStartTime - now;
+                const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+                timeCountElem.textContent = `${hours} HORAS ${minutes} MINUTOS ${seconds} SEGUNDOS`;
+                document.title = "CUÁNTAS HORAS LE FALTAN AL PIEDRA PARA ESTAR DE VACACIONES?";
+                mainTextElem.textContent = "CUÁNTAS HORAS LE FALTAN AL PIEDRA PARA ESTAR DE VACACIONES?";
+            } else {
+                const diffTime = now - vacationStartTime;
+                const hours = Math.floor(diffTime / (1000 * 60 * 60));
+                if (hours < 24) {
+                    const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+                    timeCountElem.textContent = `${hours} HORAS ${minutes} MINUTOS`;
+                    mainTextElem.textContent = `CUÁNTAS HORAS LLEVA EL PIEDRA DE VACACIONES?`;
+                    document.title = "CUÁNTAS HORAS LLEVA EL PIEDRA DE VACACIONES?";
+                } else {
+                    const days = Math.floor(hours / 24);
+                    timeCountElem.textContent = `${days} DÍAS`;
+                    mainTextElem.textContent = `CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES?`;
+                    document.title = "CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES?";
+                }
+            }
         }
 
         function applyRandomStyle() {
@@ -248,15 +272,20 @@
             });
         }
 
-        window.onload = async () => {
-            await fetchBackgroundImage();
-            calculateDays();
+        function startClock() {
+            setInterval(calculateTime, 1000);
+        }
+
+        window.onload = () => {
+            fetchBackgroundImage();
+            calculateTime();
             applyRandomStyle();
             for (let i = 0; i < 5; i++) {
                 createElement('falling');
                 createElement('rising');
                 createElement('bubbling');
             }
+            startClock();
         };
     </script>
 </body>
