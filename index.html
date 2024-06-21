@@ -13,7 +13,46 @@
                 filter: hue-rotate(360deg);
             }
         }
-        
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         body {
             display: flex;
             justify-content: center;
@@ -21,59 +60,69 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            transition: background-color 0.5s, color 0.5s;
-            animation: hue-rotate 10s infinite;
+            background: linear-gradient(45deg, #ffcccc, #ccffcc, #ccccff, #ffccff, #ccffff, #ffffcc, #ffcc99, #99ccff);
+            background-size: 600% 600%;
+            animation: gradient 15s ease infinite;
+            color: #fff;
         }
 
         .content {
             text-align: center;
-            transition: transform 0.5s;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s, filter 0.5s;
         }
 
         h1 {
-            font-size: 2em;
-            animation: pulse 1s infinite;
+            font-size: 3em;
+            margin: 0 0 20px;
+            animation: pulse 2s infinite;
         }
 
         p {
-            font-size: 1.5em;
+            font-size: 2em;
+            margin: 10px 0;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
+        .color1 { background: linear-gradient(45deg, #ffcccc, #660000); }
+        .color2 { background: linear-gradient(45deg, #ccffcc, #006600); }
+        .color3 { background: linear-gradient(45deg, #ccccff, #000066); }
+        .color4 { background: linear-gradient(45deg, #ffccff, #660066); }
+        .color5 { background: linear-gradient(45deg, #ccffff, #006666); }
+        .color6 { background: linear-gradient(45deg, #ffffcc, #666600); }
+        .color7 { background: linear-gradient(45deg, #ffcc99, #993300); }
+        .color8 { background: linear-gradient(45deg, #99ccff, #003399); }
 
-        .color1 { background-color: #ffcccc; color: #660000; }
-        .color2 { background-color: #ccffcc; color: #006600; }
-        .color3 { background-color: #ccccff; color: #000066; }
-        .color4 { background-color: #ffccff; color: #660066; }
-        .color5 { background-color: #ccffff; color: #006666; }
         .transform1 { transform: rotate(0deg); }
-        .transform2 { transform: rotate(3deg); }
-        .transform3 { transform: rotate(-3deg); }
-        .transform4 { transform: skew(10deg, 10deg); }
-        .transform5 { transform: scale(1.1); }
-        .content1 { filter: contrast(150%); }
-        .content2 { filter: sepia(50%); }
-        .content3 { filter: invert(100%); }
-        .content4 { filter: brightness(0.5); }
-        .content5 { filter: saturate(200%); }
+        .transform2 { transform: rotate(15deg); }
+        .transform3 { transform: rotate(-15deg); }
+        .transform4 { transform: skew(20deg, 10deg); }
+        .transform5 { transform: scale(1.2); }
+        .transform6 { transform: translateX(30px); }
+        .transform7 { transform: translateY(30px); }
+        .transform8 { transform: rotate(25deg); }
+
+        .content1 { filter: contrast(200%); }
+        .content2 { filter: sepia(80%); }
+        .content3 { filter: invert(80%); }
+        .content4 { filter: brightness(0.4); }
+        .content5 { filter: saturate(250%); }
+        .content6 { filter: hue-rotate(120deg); }
+        .content7 { filter: grayscale(80%); }
+        .content8 { filter: blur(2px); }
+
+        .animation1 { animation: pulse 1s infinite; }
+        .animation2 { animation: spin 5s infinite; }
+        .animation3 { animation: slide 3s infinite; }
+        .animation4 { animation: hue-rotate 10s infinite; }
     </style>
 </head>
 <body>
     <div class="content">
         <h1>CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES?</h1>
         <p id="daysCount">X DÍAS</p>
-        <p id="visitCount">Visitas: <img src="https://visitor-badge.laobi.icu/badge?page_id=mi_usuario.mi_repositorio" alt="Visitas"></p>
     </div>
     <script>
         function calculateDays() {
@@ -88,12 +137,14 @@
         function applyRandomStyle() {
             const body = document.body;
             const content = document.querySelector('.content');
-            const colorClass = `color${Math.floor(Math.random() * 5) + 1}`;
-            const transformClass = `transform${Math.floor(Math.random() * 5) + 1}`;
-            const contentClass = `content${Math.floor(Math.random() * 5) + 1}`;
+            const colorClass = `color${Math.floor(Math.random() * 8) + 1}`;
+            const transformClass = `transform${Math.floor(Math.random() * 8) + 1}`;
+            const contentClass = `content${Math.floor(Math.random() * 8) + 1}`;
+            const animationClass = `animation${Math.floor(Math.random() * 4) + 1}`;
             body.classList.add(colorClass);
             content.classList.add(transformClass);
             content.classList.add(contentClass);
+            content.classList.add(animationClass);
         }
 
         window.onload = () => {
