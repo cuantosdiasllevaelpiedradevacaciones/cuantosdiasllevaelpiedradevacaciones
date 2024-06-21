@@ -6,13 +6,13 @@
     <title>CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES</title>
     <meta property="og:title" content="CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES">
     <meta property="og:description" content="Descubre cuántos días lleva el Piedra de vacaciones.">
-    <meta property="og:image" content="https://cuantosdiasllevaelpiedradevacaciones.github.io/ruta-a-la-imagen/image.png">
+    <meta property="og:image" content="https://cuantosdiasllevaelpiedradevacaciones.github.io/cuantosdiasllevaelpiedradevacaciones/image.png">
     <meta property="og:url" content="https://cuantosdiasllevaelpiedradevacaciones.github.io/cuantosdiasllevaelpiedradevacaciones/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES">
     <meta name="twitter:description" content="Descubre cuántos días lleva el Piedra de vacaciones.">
-    <meta name="twitter:image" content="https://cuantosdiasllevaelpiedradevacaciones.github.io/ruta-a-la-imagen/image.png">
+    <meta name="twitter:image" content="https://cuantosdiasllevaelpiedradevacaciones.github.io/cuantosdiasllevaelpiedradevacaciones/image.png">
 
     <style>
         @keyframes hue-rotate {
@@ -57,11 +57,6 @@
             0% { transform: scale(0); opacity: 0; }
             50% { transform: scale(1.5); opacity: 1; }
             100% { transform: scale(1); opacity: 0; }
-        }
-
-        @keyframes blur-in {
-            0% { filter: blur(10px); }
-            100% { filter: blur(0); }
         }
 
         body {
@@ -142,7 +137,6 @@
         .content5 { filter: saturate(250%); }
         .content6 { filter: hue-rotate(120deg); }
         .content7 { filter: grayscale(80%); }
-        .content8 { filter: blur(10px); animation: blur-in 1s forwards; }
 
         .animation1 { animation: pulse 1s infinite; }
         .animation2 { animation: spin 5s infinite; }
@@ -197,7 +191,7 @@
 
         async function fetchBackgroundImage() {
             try {
-                const response = await fetch(`https://api.unsplash.com/photos/random?query=beach,pool&client_id=YOUR_ACCESS_KEY`);
+                const response = await fetch(`https://api.unsplash.com/photos/random?query=beach,pool&client_id=Ze6F_dyColY_l8NsMydsuwPaf8wsNgjRoJ3axx7Mm5U`);
                 if (!response.ok) {
                     throw new Error('API limit reached or other error');
                 }
