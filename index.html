@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Días de Vacaciones</title>
+    <title>CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES</title>
     <style>
         @keyframes hue-rotate {
             from {
@@ -55,12 +55,18 @@
         .color1 { background-color: #ffcccc; color: #660000; }
         .color2 { background-color: #ccffcc; color: #006600; }
         .color3 { background-color: #ccccff; color: #000066; }
+        .color4 { background-color: #ffccff; color: #660066; }
+        .color5 { background-color: #ccffff; color: #006666; }
         .transform1 { transform: rotate(0deg); }
         .transform2 { transform: rotate(3deg); }
         .transform3 { transform: rotate(-3deg); }
-        .content1 { filter: blur(2px); }
-        .content2 { filter: contrast(150%); }
-        .content3 { filter: sepia(50%); }
+        .transform4 { transform: skew(10deg, 10deg); }
+        .transform5 { transform: scale(1.1); }
+        .content1 { filter: contrast(150%); }
+        .content2 { filter: sepia(50%); }
+        .content3 { filter: invert(100%); }
+        .content4 { filter: brightness(0.5); }
+        .content5 { filter: saturate(200%); }
     </style>
 </head>
 <body>
@@ -82,9 +88,9 @@
         function applyRandomStyle() {
             const body = document.body;
             const content = document.querySelector('.content');
-            const colorClass = `color${Math.floor(Math.random() * 3) + 1}`;
-            const transformClass = `transform${Math.floor(Math.random() * 3) + 1}`;
-            const contentClass = `content${Math.floor(Math.random() * 3) + 1}`;
+            const colorClass = `color${Math.floor(Math.random() * 5) + 1}`;
+            const transformClass = `transform${Math.floor(Math.random() * 5) + 1}`;
+            const contentClass = `content${Math.floor(Math.random() * 5) + 1}`;
             body.classList.add(colorClass);
             content.classList.add(transformClass);
             content.classList.add(contentClass);
