@@ -95,21 +95,21 @@
             margin: 10px 0;
         }
 
-        .emoji {
+        .emoji, .star, .rocket {
             position: absolute;
             font-size: 2em;
             animation: blur-in 1s forwards;
         }
 
-        .falling-emoji {
+        .falling {
             animation: fall 5s linear infinite;
         }
 
-        .rising-emoji {
+        .rising {
             animation: rise 5s linear infinite;
         }
 
-        .bubble-emoji {
+        .bubbling {
             animation: bubble 4s ease-in-out infinite;
         }
 
@@ -161,10 +161,13 @@
         <h1>CUÁNTOS DÍAS LLEVA EL PIEDRA DE VACACIONES?</h1>
         <p id="daysCount">X DÍAS</p>
         <a class="whatsapp-share-button" href="https://api.whatsapp.com/send?text=CUÁNTOS%20DÍAS%20LLEVA%20EL%20PIEDRA%20DE%20VACACIONES%3F%20https%3A%2F%2Ffpnd.short.gy%2Fcuantosdiasllevaelpiedradevacaciones" target="_blank">
-            <img src="https://image.flaticon.com/icons/png/512/124/124034.png" alt="Compartir en WhatsApp">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Compartir en WhatsApp">
         </a>
     </div>
     <script>
+        const emojis = ['😜', '😂', '😎', '🤩', '🥳', '😁'];
+        const elements = ['emoji', 'star', 'rocket'];
+
         function calculateDays() {
             const startDate = new Date("2024-06-21");
             const today = new Date();
@@ -187,17 +190,20 @@
             content.classList.add(animationClass);
         }
 
-        function createEmoji(type) {
-            const emoji = document.createElement('div');
-            emoji.className = `emoji ${type}`;
-            emoji.textContent = '😜';  // Puedes cambiar a otros emoticonos según el efecto
-            emoji.style.left = `${Math.random() * 100}%`;
-            emoji.style.animationDuration = `${Math.random() * 3 + 2}s`;
-            document.body.appendChild(emoji);
+        function createElement(type) {
+            const element = document.createElement('div');
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const randomElement = elements[Math.floor(Math.random() * elements.length)];
 
-            emoji.addEventListener('animationend', () => {
-                document.body.removeChild(emoji);
-                createEmoji(type);
+            element.className = `${randomElement} ${type}`;
+            element.textContent = randomElement === 'emoji' ? randomEmoji : randomElement === 'star' ? '⭐' : '🚀';
+            element.style.left = `${Math.random() * 100}%`;
+            element.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            document.body.appendChild(element);
+
+            element.addEventListener('animationend', () => {
+                document.body.removeChild(element);
+                createElement(type);
             });
         }
 
@@ -205,9 +211,9 @@
             calculateDays();
             applyRandomStyle();
             for (let i = 0; i < 5; i++) {
-                createEmoji('falling-emoji');
-                createEmoji('rising-emoji');
-                createEmoji('bubble-emoji');
+                createElement('falling');
+                createElement('rising');
+                createElement('bubbling');
             }
         };
     </script>
